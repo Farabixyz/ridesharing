@@ -1,0 +1,2 @@
+[console_scripts]
+run-fuel-system = your_package.app:main

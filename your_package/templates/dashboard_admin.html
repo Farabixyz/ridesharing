@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">TankUpNow</h5>
+        <a class="btn btn-outline-primary" href="/logout">Logout</a>
+    </header>
+
+    <main class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Fuel Pricing</h1>
+            <p class="lead">Manage and view pricing details for different fuel types. Ensure availability and keep your customers updated.</p>
+        </div>
+
+        <!-- Fuel Pricing Cards -->
+        <div class="row">
+            <!-- Diesel Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h4 class="my-0 font-weight-normal">Diesel</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">110 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/order/diesel" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Petrol Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h4 class="my-0 font-weight-normal">Petrol</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">115 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/order/petrol" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Octane Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h4 class="my-0 font-weight-normal">Octane</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">120 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/order/octane" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top text-center">
+        <p class="text-muted">&copy; TankUpNow 2024</p>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

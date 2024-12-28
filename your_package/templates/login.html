@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#ffe6cc] text-gray-800 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/" class="text-orange-500 text-xl font-bold">TankUpNow</a>
+                <div class="flex items-center space-x-6">
+                    <a href="/" class="text-gray-100 hover:text-orange-400">Home</a>
+                    <a href="/login" class="text-gray-100 hover:text-orange-400">Login</a>
+                    <a href="/about" class="text-gray-100 hover:text-orange-400">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 shadow-lg rounded-lg p-8 max-w-md w-full">
+            <h2 class="text-3xl font-bold text-center text-orange-500 mb-6">Log In</h2>
+            <form method="POST" action="/login" class="space-y-6">
+                <div>
+                    <label class="block font-medium text-gray-300 mb-1">Username</label>
+                    <input type="text" name="username" required 
+                           class="w-full bg-gray-700 border border-orange-400 rounded-lg py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                </div>
+                <div>
+                    <label class="block font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" name="password" required 
+                           class="w-full bg-gray-700 border border-orange-400 rounded-lg py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                </div>
+                <button type="submit" 
+                        class="w-full bg-orange-500 hover:bg-orange-600 text-black py-2 rounded-lg shadow-md text-sm font-semibold transition duration-300">
+                    Login
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-200">Don't have an account? 
+                    <a href="/signup" class="text-orange-400 hover:underline">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

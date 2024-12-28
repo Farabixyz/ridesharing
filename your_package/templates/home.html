@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TankUpNow - Home</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <style>
+        /* Custom Colors */
+        body {
+            background: linear-gradient(to bottom, #f7f1e3, #d1ccc0);
+        }
+        .navbar {
+            background-color: #ff914d; /* Orange shade */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            color: #4b4b4b !important;
+        }
+        .card-header {
+            background-color: #4b4b4b; /* Ash color */
+            color: white;
+        }
+        .card-body {
+            background-color: #fff4e6;
+        }
+        .btn-primary {
+            background-color: #ff914d;
+            border-color: #ff914d;
+        }
+        .btn-primary:hover {
+            background-color: #e67732;
+            border-color: #e67732;
+        }
+        footer {
+            background-color: #4b4b4b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">TankUpNow</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="text-center py-5" style="background-color: #ffe6cc;">
+        <h1 class="display-4">Welcome to TankUpNow!</h1>
+        <p class="lead">Your reliable partner for seamless fuel delivery.</p>
+        <a href="/signup" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+
+    <!-- Fuel Pricing Cards -->
+    <main class="container mt-5">
+        <div class="row">
+            <!-- Diesel Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center">
+                        <h4 class="my-0 font-weight-normal">Diesel</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">110 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/login" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Petrol Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center">
+                        <h4 class="my-0 font-weight-normal">Petrol</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">115 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/login" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Octane Card -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header text-center">
+                        <h4 class="my-0 font-weight-normal">Octane</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">120 tk <small class="text-muted">per liter</small></h1>
+                        <a href="/login" class="btn btn-primary btn-block">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2024 TankUpNow. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

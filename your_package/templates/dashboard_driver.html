@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fuel Tank Animation - Medium size, orange color */
+        .fuel-tank {
+            width: 80px;
+            height: 120px;
+            border: 2px solid #ff6600; /* Orange border */
+            position: relative;
+            overflow: hidden;
+            background-color: #1e293b;
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .fuel-fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            background-color: #ff6600; /* Orange color */
+            animation: fill-tank 5s linear infinite;
+        }
+
+        @keyframes fill-tank {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 100%;
+            }
+        }
+
+        /* Car Moving Animation - Red color and "Let's Go" text */
+        .car-container {
+            position: relative;
+            width: 120px;
+            height: 60px;
+            background-color: red; /* Red car color */
+            border-radius: 10px;
+            animation: move-car 5s linear infinite;
+        }
+
+        .car-wheels {
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wheel {
+            width: 20px;
+            height: 20px;
+            background-color: #1e293b;
+            border-radius: 50%;
+        }
+
+        .car-text {
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
+
+        @keyframes move-car {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(500px);
+            }
+        }
+
+        /* Smiling Face Animation */
+        .smile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            font-size: 48px;
+            animation: smile-fade 6s ease-out forwards;
+            flex-direction: column;
+        }
+
+        @keyframes smile-fade {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-black via-purple-800 to-black text-white min-h-screen font-sans">
+
+    <div class="max-w-6xl mx-auto py-12">
+        <!-- Welcome Section -->
+        <div class="bg-gradient-to-r from-purple-900 via-black to-purple-900 shadow-lg rounded-lg p-8 mb-8">
+            <div class="flex items-center">
+                <!-- Profile Picture -->
+                <img src="{{ url_for('static', filename='profile_pictures/default.jpg') }}" alt="Driver Picture" 
+                     class="w-20 h-20 rounded-full border-4 border-purple-600 shadow-lg mr-6">
+                <div>
+                    <h2 class="text-3xl font-bold">Welcome, {{ driver.username }}!</h2>
+                    <p class="text-purple-300">You are logged in as a driver.</p>
+                </div>
+            </div>
+            <div class="mt-4 flex space-x-4">
+                <a href="{{ url_for('view_profile') }}" class="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded shadow">
+                    Edit Profile
+                </a>
+                <a href="{{ url_for('logout') }}" class="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded shadow">
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Registered Vehicles Section -->
+        <div class="bg-gradient-to-r from-purple-900 via-black to-purple-900 shadow-lg rounded-lg p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-4">Your Registered Vehicles</h3>
+            {% if vehicles %}
+                <table class="w-full text-left border-collapse border border-purple-700 text-white">
+                    <thead class="bg-purple-800">
+                        <tr>
+                            <th class="border border-purple-700 px-4 py-2">Make</th>
+                            <th class="border border-purple-700 px-4 py-2">Model</th>
+                            <th class="border border-purple-700 px-4 py-2">Year</th>
+                            <th class="border border-purple-700 px-4 py-2">License Plate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for vehicle in vehicles %}
+                            <tr class="hover:bg-purple-700">
+                                <td class="border border-purple-700 px-4 py-2">{{ vehicle.make }}</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ vehicle.model }}</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ vehicle.year }}</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ vehicle.license_plate }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="text-purple-300">No vehicles registered. <a href="{{ url_for('register_vehicle') }}" class="text-purple-400 hover:underline">Register a vehicle</a></p>
+            {% endif %}
+        </div>
+
+        <!-- Assigned Orders Section -->
+        <div class="bg-gradient-to-r from-purple-900 via-black to-purple-900 shadow-lg rounded-lg p-8">
+            <h3 class="text-2xl font-semibold mb-4">Your Assigned Orders</h3>
+            {% if pending_orders %}
+                <table class="w-full text-left border-collapse border border-purple-700 text-white">
+                    <thead class="bg-purple-800">
+                        <tr>
+                            <th class="border border-purple-700 px-4 py-2">Order ID</th>
+                            <th class="border border-purple-700 px-4 py-2">Fuel Type</th>
+                            <th class="border border-purple-700 px-4 py-2">Quantity</th>
+                            <th class="border border-purple-700 px-4 py-2">Total Price</th>
+                            <th class="border border-purple-700 px-4 py-2">Status</th>
+                            <th class="border border-purple-700 px-4 py-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table">
+                        {% for order in pending_orders %}
+                            <tr id="order-row-{{ order.id }}" class="hover:bg-purple-700">
+                                <td class="border border-purple-700 px-4 py-2">{{ order.id }}</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ order.fuel_type }}</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ order.quantity }} Litres</td>
+                                <td class="border border-purple-700 px-4 py-2">{{ order.total_price }} tk</td>
+                                <td class="border border-purple-700 px-4 py-2" id="status-{{ order.id }}">{{ order.status }}</td>
+                                <td class="border border-purple-700 px-4 py-2">
+                                    <button id="accept-btn-{{ order.id }}" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded shadow" onclick="startFuelAnimation({{ order.id }})">Accept</button>
+                                    <button id="pickup-btn-{{ order.id }}" class="hidden bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded shadow" onclick="startCarAnimation({{ order.id }})">Pickup</button>
+                                    <button id="delivered-btn-{{ order.id }}" class="hidden bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded shadow" onclick="markDelivered({{ order.id }})">Delivered</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="text-purple-300">No orders assigned or available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Fuel Tank Animation -->
+        <div id="fuel-animation" class="hidden flex justify-center mt-8">
+            <div class="fuel-tank">
+                <div class="fuel-fill"></div>
+            </div>
+        </div>
+
+        <!-- Car Moving Animation -->
+        <div id="car-animation" class="hidden flex justify-center mt-8">
+            <div class="car-container">
+                <div class="car-text">Let's Go</div>
+                <div class="car-wheels">
+                    <div class="wheel"></div>
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smiling Face Animation -->
+        <div id="smile-animation" class="hidden flex justify-center mt-8">
+            <div class="smile-container">
+                <div class="text-xl">Order Delivered</div>
+                <div>😊</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startFuelAnimation(orderId) {
+            // Hide accept button and show pickup button
+            document.getElementById('fuel-animation').classList.remove('hidden');
+            document.getElementById(`status-${orderId}`).innerText = 'Accepted';
+            document.getElementById(`accept-btn-${orderId}`).classList.add('hidden');
+            document.getElementById(`pickup-btn-${orderId}`).classList.remove('hidden');
+        }
+
+        function startCarAnimation(orderId) {
+            // Hide fuel animation and show car animation
+            document.getElementById('fuel-animation').classList.add('hidden');
+            document.getElementById('car-animation').classList.remove('hidden');
+            document.getElementById(`status-${orderId}`).innerText = 'In Progress';
+            document.getElementById(`pickup-btn-${orderId}`).classList.add('hidden');
+            document.getElementById(`delivered-btn-${orderId}`).classList.remove('hidden');
+        }
+
+        function markDelivered(orderId) {
+            // Hide car animation and show smile animation
+            document.getElementById('car-animation').classList.add('hidden');
+            document.getElementById('smile-animation').classList.remove('hidden');
+            document.getElementById(`status-${orderId}`).innerText = 'Delivered';
+            document.getElementById(`delivered-btn-${orderId}`).classList.add('hidden');
+            setTimeout(function() {
+                document.getElementById('smile-animation').classList.add('hidden');
+            }, 3000); // Hide smile after 3 seconds
+        }
+    </script>
+</body>
+</html>
